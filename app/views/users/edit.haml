@@ -1,3 +1,19 @@
 - title "Update Profile"
 
-= render 'form'
+= form_for @user do |f|
+  = f.error_messages
+  %p
+    = f.label :username
+    = f.text_field :username
+  %p
+    = f.label :email, "Email Address"
+    = f.text_field :email
+  %p
+    = f.label :description
+    = f.text_area :description
+  %p
+    = f.label :favorite_gems
+    = f.text_field :favorite_gems
+  %p
+    = f.submit (@user.new_record? ? "Sign up" : "Update")
+

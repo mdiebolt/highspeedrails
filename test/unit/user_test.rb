@@ -35,15 +35,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal ["has already been taken"], new_user(:email => 'bar@example.com').errors[:email]
   end
 
-  should "validate uniqueness of username" do
-    new_user(:username => 'uniquename').save!
-    assert_equal ["has already been taken"], new_user(:username => 'uniquename').errors[:username]
-  end
-
-  should "validate odd characters in username" do
-    assert_equal ["should only contain letters, numbers, or .-_@"], new_user(:username => 'odd ^&(@)').errors[:username]
-  end
-
   should "validate password length" do
     assert_equal ["is too short (minimum is 4 characters)"], new_user(:password => 'bad').errors[:password]
   end
