@@ -1,0 +1,11 @@
+- title "Competitions"
+
+%h2
+  Next
+  = link_to "Competition", competition_path(@competitions.last)
+  = @competitions.last.start_date
+
+%h3
+  Past competitions
+  - @competitions.each do |competition|
+    = link_to competition.display_name, competition_path(competition)

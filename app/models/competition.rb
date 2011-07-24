@@ -1,4 +1,16 @@
 class Competition < ActiveRecord::Base
-  before_save :prepare_password
+  has_many :submissions
 
+  before_save :generate_end_date
+
+  validates_presence_of :start_date
+
+  def display_name
+    self.theme ? self.theme : "Competition #{self.id}"
+  end
+
+  private
+  def generate_end_date
+    self.end_date = self.start_date + 2.days if self.end_date.nil?
+  end
 end

@@ -1,0 +1,26 @@
+- title @competition.display_name
+
+%h2
+  Competition starts at
+  = @competition.start_date
+
+- if @competition.theme
+  %h3
+    The theme is
+    = @competition.theme
+  %p
+    Time until submission
+
+  %p
+    Submit your application
+    %a(href='#') here
+- else
+  %h3
+    The theme is undecided. Vote on it
+    %a(href='#') here
+
+- if @competition.submissions.length > 0
+  %h4
+    Submissions
+    - @competition.submissions.each do |submission|
+      %p= link_to submission.name, submission.url
