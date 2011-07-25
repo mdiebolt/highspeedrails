@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110724223224) do
+ActiveRecord::Schema.define(:version => 20110725030331) do
 
   create_table "competitions", :force => true do |t|
     t.string   "theme"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(:version => 20110724223224) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "submission_votes", :force => true do |t|
+    t.integer  "user_id",        :null => false
+    t.integer  "competition_id", :null => false
+    t.integer  "submission_id",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "submission_votes", ["user_id", "competition_id"], :name => "index_submission_votes_on_user_id_and_competition_id", :unique => true
 
   create_table "submissions", :force => true do |t|
     t.string   "name",           :null => false
