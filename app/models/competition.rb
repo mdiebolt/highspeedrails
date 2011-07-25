@@ -9,6 +9,10 @@ class Competition < ActiveRecord::Base
     self.theme ? self.theme : "Competition #{self.id}"
   end
 
+  def formatted_time
+    self.start_date.strftime("%A, %B %d %Y at %I:%M%p")
+  end
+
   private
   def generate_end_date
     self.end_date = self.start_date + 2.days if self.end_date.nil?

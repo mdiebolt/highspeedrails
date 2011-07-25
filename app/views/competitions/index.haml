@@ -3,7 +3,7 @@
 %h2
   Next
   = link_to "Competition", competition_path(@competitions.last)
-  = @competitions.last.start_date
+  = @competitions.last.formatted_time
 
 %h3
   Past competitions
