@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725030331) do
+ActiveRecord::Schema.define(:version => 20110725222611) do
+
+  create_table "competition_theme_votes", :force => true do |t|
+    t.integer  "competition_id", :null => false
+    t.integer  "user_id",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "competition_theme_votes", ["user_id", "competition_id"], :name => "index_competition_theme_votes_on_user_id_and_competition_id", :unique => true
 
   create_table "competitions", :force => true do |t|
     t.string   "theme"

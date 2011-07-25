@@ -1,5 +1,5 @@
 class Competition < ActiveRecord::Base
-  has_many :submissions
+  has_many :submissions, :competition_theme_vote
 
   before_save :generate_end_date
 

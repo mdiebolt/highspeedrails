@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
 
+  def to_s
+    self.username || "User #{self.id}"
+  end
+
   private
 
   def prepare_password
