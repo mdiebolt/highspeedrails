@@ -1,0 +1,11 @@
+= form_for [@competition, @submission] do |f|
+  = f.error_messages
+  = f.hidden_field :competition_id
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p
+    = f.label :url
+    = f.text_field :url
+  %p
+    = f.submit
