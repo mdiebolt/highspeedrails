@@ -15,7 +15,7 @@
     = link_to "here", new_competition_submission_path(:competition_id => @competition.id)
 - else
   %h3
-    The theme is undecided. Vote on it
+    The theme is undecided. Give us your two cents
     %a(href='#') here
 
 - if @competition.submissions.length > 0
@@ -29,3 +29,6 @@
 
       - unless SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id)
         %button Vote
+
+- if Time.zone.now >= @competition.start_date && Time.zone.now <= @competition.end_date
+  %p Submit your application #{link_to "here", new_competition_submission_path(:competition_id => @competition.id)}
