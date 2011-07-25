@@ -10,10 +10,9 @@
     = @competition.theme
   %p
     Time until submission
-
   %p
     Submit your application
-    %a(href='#') here
+    = link_to "here", new_competition_submission_path(:competition_id => @competition.id)
 - else
   %h3
     The theme is undecided. Vote on it
@@ -22,5 +21,11 @@
 - if @competition.submissions.length > 0
   %h4
     Submissions
-    - @competition.submissions.each do |submission|
-      %p= link_to submission.name, submission.url
+    = form_tag submission_votes_path :competition_id => @competition.id do
+      - @competition.submissions.each do |submission|
+        %label
+          %span= submission.name
+          = radio_button_tag :submission_id, submission.id, SubmissionVote.find_by_user_id_and_submission_id(current_user.id, submission.id) ? true : false, :disabled => SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id) ? true : false
+
+      - unless SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id)
+        %button Vote
