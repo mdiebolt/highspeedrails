@@ -15,8 +15,14 @@
     = link_to "here", new_competition_submission_path(:competition_id => @competition.id)
 - else
   %h3
-    The theme is undecided. Give us your two cents
-    = link_to "here", new_competition_theme_vote_path(:competition_id => @competition.id)
+    The theme is undecided.
+    - if @competition.competition_theme_votes.count < 1
+      Give us your two cents
+      = link_to "here", new_competition_theme_vote_path(:competition_id => @competition.id)
+    - else
+      Here's what we are thinking so far
+      - @competition.competition_theme_votes.each do |vote|
+        %p=vote.theme
 
 - if @competition.submissions.length > 0
   %h4
