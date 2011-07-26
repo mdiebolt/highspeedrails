@@ -1,6 +1,8 @@
 class CompetitionThemeVotesController < ApplicationController
   respond_to :html
 
+  before_filter :login_required
+
   def new
     @competition_theme_vote = CompetitionThemeVote.new
     @competition_theme_vote.competition_id = params[:competition_id]

@@ -1,6 +1,8 @@
 class SubmissionVotesController < ApplicationController
   respond_to :html
 
+  before_filter :require_user
+
   def create
     competition_id = params[:competition_id]
     submission_id = params[:submission_id]
