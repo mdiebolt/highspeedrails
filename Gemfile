@@ -12,6 +12,7 @@ gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
 
+gem 'coffee-filter'
 gem 'haml'
 gem 'jquery-rails'
 
