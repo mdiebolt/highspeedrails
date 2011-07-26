@@ -1,0 +1,10 @@
+- title "Suggest competition theme"
+
+= form_for @competition_theme_vote do |f|
+  = f.error_messages
+  = f.hidden_field :competition_id
+  %p
+    = f.label :theme
+    = f.text_field :theme
+  %p
+    = f.submit

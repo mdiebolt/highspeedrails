@@ -1,4 +1,4 @@
-class CompetitionThemeVotes < ActiveRecord::Base
+class CompetitionThemeVote < ActiveRecord::Base
   belongs_to :user
   belongs_to :competition
 end

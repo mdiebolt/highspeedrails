@@ -16,7 +16,7 @@
 - else
   %h3
     The theme is undecided. Give us your two cents
-    %a(href='#') here
+    = link_to "here", new_competition_theme_vote_path(:competition_id => @competition.id)
 
 - if @competition.submissions.length > 0
   %h4

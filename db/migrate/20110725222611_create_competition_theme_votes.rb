@@ -3,6 +3,7 @@ class CreateCompetitionThemeVotes < ActiveRecord::Migration
     create_table :competition_theme_votes do |t|
       t.references :competition, :null => false
       t.references :user, :null => false
+      t.string :theme, :null => false
 
       t.timestamps
     end

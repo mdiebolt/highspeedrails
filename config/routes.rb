@@ -8,7 +8,7 @@ Highspeedrails::Application.routes.draw do
     resources :submissions
   end
 
-  resources :sessions, :submission_votes, :users
+  resources :competition_theme_votes, :sessions, :submission_votes, :users
 
   root :to => 'users#new'
 

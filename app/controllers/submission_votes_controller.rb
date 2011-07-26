@@ -10,8 +10,8 @@ class SubmissionVotesController < ApplicationController
     if SubmissionVote.create( :user_id => current_user.id, :competition_id => competition_id, :submission_id => submission_id )
       @submission.votes = (@submission.votes || 0) + 1
       @submission.save
-    end
 
-    render '/competitions/show', :id => competition_id
+      render '/competitions/show', :id => competition_id
+    end
   end
 end
