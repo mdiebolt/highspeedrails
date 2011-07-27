@@ -14,32 +14,30 @@
     Submit your application
     = link_to "here", new_competition_submission_path(:competition_id => @competition.id)
 - else
-  %h3
-    The theme is undecided.
-    - if @competition.competition_theme_votes.count < 1
-      Give us your two cents
-      = link_to "here", new_competition_theme_vote_path(:competition_id => @competition.id)
-    - else
-      Here's what we are thinking so far
-      - @competition.competition_theme_votes.each do |vote|
-        %p= vote.theme
+  %h3 The theme is undecided.
+  - unless CompetitionThemeVote.find_by_user_id(current_user.id)
+    %p Give us your two cents
+    = link_to "here", new_competition_theme_vote_path(:competition_id => @competition.id)
+  %p Here's what we are thinking so far
+  - @competition.competition_theme_votes.each do |vote|
+    %p= vote.theme
 
 - if @competition.submissions.length > 0
-  %h4
-    Submissions
-    = form_tag submission_votes_path :competition_id => @competition.id do
-      - @competition.submissions.each do |submission|
-        %label
-          %span
-          = submission.name
-          - if submission.votes
-            (
-            = submission.votes
-            )
-          = radio_button_tag :submission_id, submission.id, SubmissionVote.find_by_user_id_and_submission_id(current_user.id, submission.id) ? true : false, :disabled => SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id) ? true : false
 
-      - unless SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id)
-        %button Vote
+  = form_tag submission_votes_path :competition_id => @competition.id do
+    %h4 Submissions
+    - @competition.submissions.each do |submission|
+      %label
+        %span
+        = submission.name
+        - if submission.votes
+          (
+          = submission.votes
+          )
+        = radio_button_tag :submission_id, submission.id, SubmissionVote.find_by_user_id_and_submission_id(current_user.id, submission.id) ? true : false, :disabled => SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id) ? true : false
+
+    - unless SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id)
+      %button Vote
 
 - if Time.zone.now >= @competition.start_date && Time.zone.now <= @competition.end_date
   %p Submit your application #{link_to "here", new_competition_submission_path(:competition_id => @competition.id)}

@@ -9,8 +9,8 @@
 %h4
   Past competitions
   %ul
-  - @competitions.reverse.each do |competition|
-    %li= link_to competition.display_name, competition_path(competition)
+    - @competitions.reverse.each do |competition|
+      %li= link_to competition.display_name, competition_path(competition)
 
 :coffeescript
   $ ->
