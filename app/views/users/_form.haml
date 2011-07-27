@@ -11,3 +11,5 @@
     = f.password_field :password
   %p
     = f.submit (@user.new_record? ? "Sign up" : "Update")
+    |
+    = link_to "Log in", login_path

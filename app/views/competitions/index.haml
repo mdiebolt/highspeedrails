@@ -1,15 +1,16 @@
 - title "Competitions"
 
-%h2
+%h3.next_competition
   Next
-  = link_to "Competition", competition_path(@competitions.last)
-  = @competitions.last.formatted_time
-  #countdown
+  = link_to "competition", competition_path(@competitions.last)
+  starts in
+#countdown
 
-%h3
+%h4
   Past competitions
-  - @competitions.each do |competition|
-    = link_to competition.display_name, competition_path(competition)
+  %ul
+  - @competitions.reverse.each do |competition|
+    %li= link_to competition.display_name, competition_path(competition)
 
 :coffeescript
   $ ->
