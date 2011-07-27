@@ -4,8 +4,16 @@
   Next
   = link_to "Competition", competition_path(@competitions.last)
   = @competitions.last.formatted_time
+  #countdown
 
 %h3
   Past competitions
   - @competitions.each do |competition|
     = link_to competition.display_name, competition_path(competition)
+
+:coffeescript
+  $ ->
+    next_competition = new Date("#{@competitions.last.start_date}")
+
+    $('#countdown').countdown
+      until: next_competition

@@ -1,3 +1,14 @@
 - title "New competition"
 
-= render 'form'
+= form_for @competition do |f|
+  = f.error_messages
+  %p.relative
+    = f.label :start_date
+    = f.text_field :start_date, :placeholder => 'mm/dd/yyyy', :class => '.ui-icon-calendar'
+    %img.ui-icon-calendar
+  %p
+    = f.submit
+
+:coffeescript
+  $ ->
+    $('#competition_start_date').datepicker()
