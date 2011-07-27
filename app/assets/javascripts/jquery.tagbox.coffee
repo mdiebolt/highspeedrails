@@ -3,6 +3,7 @@
  adapted from superbly tagfield v0.1
  http://www.superbly.ch
 ###
+
 (($) ->
   $.fn.tagbox = (options) ->
     inserted = []
@@ -21,7 +22,7 @@
       tagField.attr('data-tags', inserted.join(','))
 
     addItem = (value) ->
-      unless inserted.include(value)
+      unless $.inArray(value, inserted)
         inserted.push(value)
         tagInput.parent().before("<li class='tag_item'><span>#{value}</span><a> x</a></li>")
         tagInput.val("")
@@ -33,7 +34,7 @@
         updateTags()
 
     removeItem = (value) ->
-      if inserted.include(value)
+      if $.inArray(value, inserted)
         inserted.remove(value)
         tagList.find('.tag_item span').filter( ->
           $(this).text() == value
@@ -42,7 +43,7 @@
         updateTags()
 
     if options?.presets?.length
-      options.presets.each (item) ->
+      for item in options.presets
         addItem(item)
 
     keys =
@@ -50,7 +51,7 @@
       tab: 9
       backspace: 8
 
-    tagInput.keydown (e) ->
+    $('.tag_input').keydown (e) ->
       value = $(this).val() || ""
       key = e.which
 

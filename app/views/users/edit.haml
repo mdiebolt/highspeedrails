@@ -16,3 +16,8 @@
     = f.text_field :favorite_gems
   %p
     = f.submit (@user.new_record? ? "Sign up" : "Update")
+
+:coffeescript
+  $ ->
+    $('#user_favorite_gems').tagbox
+      presets: $('#user_favorite_gems').val()?.split(' ') || []

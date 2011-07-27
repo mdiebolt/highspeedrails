@@ -3,6 +3,7 @@
   %head
     %title= content_for?(:title) ? yield(:title) : "Untitled"
     = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
     <link href='http://fonts.googleapis.com/css?family=Varela+Round&v2' rel='stylesheet' type='text/css'>
     = csrf_meta_tag
     = yield(:head)
