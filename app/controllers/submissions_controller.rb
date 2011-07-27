@@ -11,6 +11,7 @@ class SubmissionsController < ApplicationController
   def create
     @competition = Competition.find(params[:competition_id])
     @submission = Submission.new(params[:submission])
+    @submission.user = current_user
 
     if @submission.save
       render '/competitions/show', :id => @competition.id, :notice => "Submission was successful."

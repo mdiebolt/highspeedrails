@@ -8,8 +8,7 @@
   %h3
     The theme is
     = @competition.theme
-  %p
-    Time until submission
+  %p Time until submission
   %p
     Submit your application
     = link_to "here", new_competition_submission_path(:competition_id => @competition.id)
@@ -22,8 +21,10 @@
   - @competition.competition_theme_votes.each do |vote|
     %p= vote.theme
 
-- if @competition.submissions.length > 0
+- unless Submission.find_by_user_id_and_competition_id(current_user.id, @competition.id)
+  = link_to "Submit your application", new_competition_submission_path(:competition_id => @competition.id)
 
+- if @competition.submissions.length > 0
   = form_tag submission_votes_path :competition_id => @competition.id do
     %h4 Submissions
     - @competition.submissions.each do |submission|

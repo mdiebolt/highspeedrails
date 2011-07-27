@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725222611) do
+ActiveRecord::Schema.define(:version => 20110727221935) do
 
   create_table "competition_theme_votes", :force => true do |t|
     t.integer  "competition_id", :null => false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20110725222611) do
     t.integer  "competition_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
