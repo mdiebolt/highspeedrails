@@ -1,8 +1,6 @@
 class SubmissionsController < ApplicationController
   respond_to :html
 
-  before_filter :require_user
-
   def new
     @competition = Competition.find(params[:competition_id])
     @submission = Submission.new(:competition_id => params[:competition_id])

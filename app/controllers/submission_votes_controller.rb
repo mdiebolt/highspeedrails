@@ -1,8 +1,6 @@
 class SubmissionVotesController < ApplicationController
   respond_to :html
 
-  before_filter :require_user
-
   def create
     competition_id = params[:competition_id]
     submission_id = params[:submission_id]
@@ -12,6 +10,8 @@ class SubmissionVotesController < ApplicationController
     if SubmissionVote.create( :user_id => current_user.id, :competition_id => competition_id, :submission_id => submission_id )
       @submission.votes = (@submission.votes || 0) + 1
       @submission.save
+
+      @competition = Competition.find(competition_id)
 
       render '/competitions/show', :id => competition_id
     end

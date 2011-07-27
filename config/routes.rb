@@ -10,7 +10,7 @@ Highspeedrails::Application.routes.draw do
 
   resources :competition_theme_votes, :sessions, :submission_votes, :users
 
-  root :to => 'users#new'
+  root :to => 'competitions#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

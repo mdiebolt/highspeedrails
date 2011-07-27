@@ -30,7 +30,12 @@
     = form_tag submission_votes_path :competition_id => @competition.id do
       - @competition.submissions.each do |submission|
         %label
-          %span= submission.name
+          %span
+          = submission.name
+          - if submission.votes
+            (
+            = submission.votes
+            )
           = radio_button_tag :submission_id, submission.id, SubmissionVote.find_by_user_id_and_submission_id(current_user.id, submission.id) ? true : false, :disabled => SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id) ? true : false
 
       - unless SubmissionVote.find_by_user_id_and_competition_id(current_user.id, @competition.id)
