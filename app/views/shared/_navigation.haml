@@ -1,0 +1,5 @@
+%ul
+  %li= link_to "Competitions", competitions_path
+  %li= link_to "Current competition", competition_path(Competition.last)
+  - if current_user
+    %li= link_to "Profile", edit_user_path(current_user)
